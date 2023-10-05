@@ -2,3 +2,4 @@
 echo 'input file name'
 read name
 echo '#include <stdio.h>' > $name
+vi $name
