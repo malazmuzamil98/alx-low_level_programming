@@ -1,0 +1,4 @@
+#!/bin/bash
+echo 'input file name'
+read name
+echo '#!/bin/bash' > $name
