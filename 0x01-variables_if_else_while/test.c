@@ -2,7 +2,7 @@
 int main(void)
 {
 	int n;
-	if ( n > 0 )
-		printf("is positive\n");
+	char ch = 'a-z';
+	putchar(ch);
 	return 0;
 }
