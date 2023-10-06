@@ -1,0 +1,4 @@
+#!/bin/bash
+echo 'input file name'
+read fname
+chmod u+x $fname
