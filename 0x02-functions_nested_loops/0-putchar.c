@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include "main.h"
 /**
  *main - A program that prints _putchar
  *
@@ -8,7 +9,6 @@
  */
 int main(void)
 {
-	char str[] = "_putchar";
 
 	printf("%s\n", str);
 	return (0);
