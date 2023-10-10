@@ -15,7 +15,7 @@ void print_alphabet(void)
 		for (alpha = 97; alpha <= 122; alpha++)
 		{
 			_putchar(alpha);
-			_putchar(10);
 		}
+		_putchar(10);
 }
 
