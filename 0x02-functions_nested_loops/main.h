@@ -2,7 +2,6 @@
 #define MAIN_H
 #include <stdio.h>
 
-char str[] = "_putchar";
 int _putchar(char c);
 void print_alphabet(void);
 void print_alphabet_x10(void);
