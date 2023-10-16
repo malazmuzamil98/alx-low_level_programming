@@ -2,9 +2,9 @@
 /**
   * _strlen - a function returns string length
   *
-  * s@: char parameter
+  * @s: char parameter
   *
-  * Return: Always 0.
+  * Return: strl value..
   */
 int _strlen(char *s)
 {
