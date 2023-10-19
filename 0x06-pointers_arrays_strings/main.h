@@ -13,3 +13,4 @@ char *cap_string(char *);
 
 
 #endif
+char *leet(char *);
