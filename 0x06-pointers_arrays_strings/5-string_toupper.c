@@ -2,7 +2,7 @@
 
 /**
  * string_toupper - change all lowercase to uppercase
- * @n: input if the function pointer
+ * @s: input if the function pointer
  *
  *
  *
