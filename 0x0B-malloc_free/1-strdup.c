@@ -20,10 +20,13 @@ char *_strdup(char *str)
 	{
 		return (0);
 	}
-	for (i = 0; str[i] != '\0'; i++)
+	else
 	{
-		new[i] = str[i];
+		for (i = 0; str[i] != '\0'; i++)
+		{
+			new[i] = str[i];
+		}
+		new[i] = '\0';
+		return (new);
 	}
-	new[i] = '\0';
-	return (new);
 }
