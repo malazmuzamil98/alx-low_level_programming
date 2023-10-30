@@ -6,8 +6,8 @@
 */
 char *_strdup(char *str)
 {
-	int len = strlen(str);
-	int i;
+	unsigned int len = strlen(str);
+	unsigned int i;
 	char *new = (char *)malloc((len * sizeof(char)) + 1);
 
 	if (str == 0)
