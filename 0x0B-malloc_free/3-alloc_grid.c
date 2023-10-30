@@ -14,7 +14,7 @@ int **alloc_grid(int width, int height)
 	{
 		return (0);
 	}
-	ar2d = (int **)malloc(height * sizeof(int));
+	ar2d = (int **)malloc(height * sizeof(int *));
 
 	if (ar2d == NULL)
 	{
@@ -26,7 +26,7 @@ int **alloc_grid(int width, int height)
 
 		if (ar2d[i] == 0)
 		{
-			for (j = 0; j < width; j++)
+			for (j = 0; j < i; j++)
 			{
 				free(ar2d[j]);
 			}
