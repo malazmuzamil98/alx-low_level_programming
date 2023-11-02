@@ -1,51 +1,54 @@
 #include "main.h"
+
 /**
- * _realloc - a function that reallocates a memory block
- * @ptr: A pointer
- * @old_size: the old memory size
- * @new_size: the new memory size
- * Return: a pointer to the array
-*/
+ * _realloc - reallocates a memory block using malloc and free
+ *
+ * @ptr: pointer
+ * @old_size: int
+ * @new_size: int
+ *
+ * Return: m pointer
+ */
+
 void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size)
 {
-	void *ptr1;
+	void *m;
+	char *ptr_copy, *filler;
+	unsigned int index;
 
 	if (new_size == old_size)
 		return (ptr);
+
 	if (ptr == NULL)
 	{
-		ptr = malloc(new_size);
-		if (ptr == NULL)
-		{
-			printf("failed to allocate memory\n");
+		m = malloc(new_size);
+
+		if (m == NULL)
 			return (NULL);
-		}
+
+		return (m);
 	}
+
 	if (new_size == 0 && ptr != NULL)
+	{
 		free(ptr);
 		return (NULL);
-	if (new_size > old_size)
-	{
-		ptr1 = malloc(new_size);
-		if (ptr1 == NULL)
-		{
-			printf("failed to allocate memory\n");
-			return (NULL);
-		}
-		memcpy(ptr1, ptr, old_size);
-		free(ptr);
-		return (ptr1);
 	}
-	if (new_size < old_size)
+
+	ptr_copy = ptr;
+	m = malloc(sizeof(*ptr_copy) * new_size);
+
+	if (m == NULL)
 	{
-		ptr1 = malloc(new_size);
-		if (ptr1 == NULL)
-		{
-			printf("failed to allocate memory\n");
-			return (NULL);
-		}
-		memcpy(ptr1, ptr, new_size);
 		free(ptr);
-		return (ptr1);
+		return (NULL);
 	}
+
+	filler = m;
+
+	for (index = 0; index < old_size && index < new_size; index++)
+		filler[index] = *ptr_copy++;
+
+	free(ptr);
+	return (m);
 }
