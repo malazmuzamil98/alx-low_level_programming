@@ -12,5 +12,7 @@ void *_calloc(unsigned int nmemb, unsigned int size);
 int *array_range(int min, int max);
 void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size);
 char *str_concat(char *s1, char *s2);
+void *allocate_memory(unsigned int size);
+void copy_memory(void *dest, void *src, unsigned int size);
 
 #endif
