@@ -6,14 +6,15 @@
  * @argv: arguments
  * Return: Nothing
 */
-int main (int argc, char **argv)
+int main(int argc, char **argv)
 {
 	int a, b;
 	int (*check_op)(int, int);
+
 	if (argc != 4)
 	{
 		printf("Error\n");
-		exit (98);
+		exit(98);
 	}
 	a = atoi(argv[1]);
 	b = atoi(argv[3]);
@@ -21,7 +22,7 @@ int main (int argc, char **argv)
 	if (!check_op)
 	{
 		printf("Error\n");
-		exit (99);
+		exit(99);
 	}
 	printf("%d\n", check_op(a, b));
 	return (0);
