@@ -18,8 +18,8 @@ void print_strings(const char *separator, const unsigned int n, ...)
 	}
 	for (i = 0; i < n; i++)
 	{
-		x = va_arg(str, char *);
-		if (!x)
+		x = va_arg(str, char*);
+		if (x == NULL)
 		{
 			x = "nil";
 		}
