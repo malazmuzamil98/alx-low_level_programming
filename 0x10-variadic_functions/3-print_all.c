@@ -60,10 +60,6 @@ void print_all(const char * const format, ...)
 	int i, j;
 	va_list all;
 
-	if (format == NULL)
-	{
-		return;
-	}
 		arg_num = strlen(format);
 		i = 0;
 		va_start(all, format);
