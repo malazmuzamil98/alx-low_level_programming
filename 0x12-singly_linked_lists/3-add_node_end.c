@@ -11,10 +11,18 @@ list_t *add_node_end(list_t **head, const char *str)
 
 	ahmed = malloc(sizeof(list_t));
 	if (ahmed == NULL)
-		return(NULL);
+		return (NULL);
 	ahmed->str = strdup(str);
 	ahmed->len = strlen(str);
-	ahmed->next = *head;
-	*head = ahmed;
-	return (*head);
+	ahmed->next = NULL;
+	if (*head == NULL)
+	{
+		*head = ahmed;
+		return (ahmed);
+	}
+	temp = *head;
+	while (temp->next)
+		temp = temp->next;
+	temp->next = ahmed;
+	return (ahmed);
 }
