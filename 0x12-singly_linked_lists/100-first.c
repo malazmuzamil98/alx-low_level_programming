@@ -1,9 +1,8 @@
 #include "lists.h"
 void before_main(void) __attribute__((constructor));
 /**
- * print_list - prints all elements
- * @h: head
- * Return: count
+ * before_main - before main
+ * function is executed
 */
 void before_main(void)
 {
