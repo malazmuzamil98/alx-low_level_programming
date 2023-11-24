@@ -1,0 +1,39 @@
+#include "main.h"
+/**
+ * _realloc - a function that reallocates a memory block
+ * @ptr: A pointer
+ * @old_size: the old memory size
+ * @new_size: the new memory size
+ * Return: a pointer to the array
+*/
+void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size)
+{
+	void *ptr1;
+
+	if (new_size == old_size)
+	{
+		return (ptr);
+	}
+	if (ptr == NULL)
+	{
+		return (allocate_memory(new_size));
+	}
+	if (new_size == 0 && ptr != NULL)
+	{
+		free(ptr);
+		return (NULL);
+	}
+	if (new_size > old_size)
+	{
+		ptr1 = allocate_memory(new_size);
+		copy_memory(ptr1, ptr, old_size);
+		return (ptr1);
+	}
+	else
+	{
+		ptr1 = allocate_memory(new_size);
+		copy_memory(ptr1, ptr, new_size);
+		return (ptr1);
+	}
+	return NULL;
+}
