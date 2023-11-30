@@ -1,27 +1,20 @@
 #include "../lists.h"
+
 /**
- * print_list - prints all elements
- * @h: head
- * Return: count
+ * print_listint - print all list
+ * @h: pointer to head
+ * Return: size of list
 */
+
 size_t print_listint(const listint_t *h)
 {
-	size_t n;
-	n =0;
+	size_t i = 0;
+
 	while (h)
 	{
-		if (h->str == NULL)
-		{
-			printf("[0] (nil)\n");
-			n++;
-		}
-		else
-		{
-			printf("[%u] %s\n", h->len, h->str);
-			n++;
-		}
+		printf("%d\n", h->n);
 		h = h->next;
+		i++;
 	}
-
-	return (n);
+	return i;
 }
