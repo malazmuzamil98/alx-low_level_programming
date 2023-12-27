@@ -12,6 +12,6 @@ int func1(int argc, __attribute__((unused)) char **argv)
 }
 
 char func2(__attribute__((unused)) int var1, char *var2)
-/low	{
+{
 	return (0);
 }
