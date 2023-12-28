@@ -14,20 +14,21 @@ def remove_unused_attribute(file_name, function_name):
                 break
         else:
             raise ValueError(f"No function named '{function_name}' found in the file.")
-	# took a copy from the original function declaration
+        # took a copy from the original function declaration
         original_declaration = lines[function_start_line]
-	
+
         # Extract and remove __attribute__((unused))
         match = re.search(r'(__attribute__\s*\(\s*\(\s*unused\s*\)\s*\))', lines[function_start_line])
         unused_attribute = match.group(1) if match else None
         lines[function_start_line] = re.sub(r'__attribute__\s*\(\s*\(\s*unused\s*\)\s*\)', '', lines[function_start_line])
-
         # Call the existing function to generate documentation
         generate_documentation(lines, function_start_line, file_name, function_name)
 
         # Restore __attribute__((unused))
         if unused_attribute:
             lines[function_start_line] = lines[function_start_line].replace(lines[function_start_line].strip(), lines[function_start_line].strip() + ' ' + unused_attribute).strip()
+
+        write_output_to_file(lines)
 
         # Write back to the file
         with open(file_name, 'w') as file:
@@ -37,6 +38,10 @@ def remove_unused_attribute(file_name, function_name):
 
     except Exception as e:
         print(f"Error: {e}")
+
+def write_output_to_file(content):
+    with open("output.txt", "w") as output_file:
+        output_file.write(f'Variable: {content}\n')
 
 def generate_documentation(lines, function_start_line, file_name, function_name):
     # Extract function arguments
@@ -78,9 +83,6 @@ def generate_documentation(lines, function_start_line, file_name, function_name)
 
         # Insert documentation into the file
         lines.insert(function_start_line, '\n'.join(documentation))
-
-for i in range(11):
-    remove_unused_attribute('j.c', f'func{i}')
-
-remove_unused_attribute('j.c', 'main')
-remove_unused_attribute('j.c', 'main1')
+# Example usage
+for i in range(3):
+        remove_unused_attribute('test.c', f'func{i}')
