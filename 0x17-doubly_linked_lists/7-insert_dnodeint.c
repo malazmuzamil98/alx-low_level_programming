@@ -1,48 +1,50 @@
 #include "lists.h"
-
 /**
- * insert_dnodeint_at_index - inserts a new node at
- * a given position
- *
- * @h: head of the list
- * @idx: index of the new node
- * @n: value of the new node
- * Return: the address of the new node, or NULL if it failed
+ * insert_dnodeint_at_index - Inserts a new node at
+ * a specified index in a doubly linked list.
+ * @h: Pointer to pointer to the head of the list.
+ * @idx: Index at which the new node should be inserted.
+ * @n: Value to be stored in the new node.
+ * Return: Pointer to the newly inserted node, or NULL on failure.
  */
 dlistint_t *insert_dnodeint_at_index(dlistint_t **h, unsigned int idx, int n)
 {
-	dlistint_t *parser, *new_node, *holder;
-	unsigned int i;
+	dlistint_t *insert, *head = *h;
+
+	if (!head && idx != 0)
+		return (NULL);
+
+	insert = malloc(sizeof(dlistint_t));
+	if (!insert)
+		return (NULL);
+
+	insert->n = n;
 
 	if (idx == 0)
 	{
-		new_node = add_dnodeint(h, n);
+		insert->next = head;
+		insert->prev = NULL;
+		if (head)
+			head->prev = insert;
+		*h = insert;
 	}
 	else
 	{
-		if (h == NULL)
-			return (NULL);
-		while (h->prev != NULL)
-			h = h->prev;
-		parser = *h;
-		for (i = 0; i < idx; i++)
+		while (idx--)
 		{
-			if (parser->next != NULL)
+			if (head->next == NULL && idx == 0)
 			{
-				parser = parser->next;
+				return (add_dnodeint_end(&head, n));
 			}
-			else
+			if (head->next == NULL && idx != 0)
 				return (NULL);
+			head = head->next;
 		}
-		if (parser->next == NULL)
-		{
-			new_node = add_dnodeint(h, n);
-
-		}
-		else
-		{
-			
-		}
+		insert->next = head;
+		insert->prev = head->prev;
+		head->prev->next = insert;
+		head->prev = insert;
 	}
-	
+
+	return (insert);
 }
