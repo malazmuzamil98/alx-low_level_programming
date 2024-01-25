@@ -1,67 +1,46 @@
 #include "lists.h"
 
 /**
- * listintlen - claculate all the elements of a listint_t list.
- *
- * @h: list pointer
- *
- * Return: the number of elements
- */
-unsigned int listintlen(const listint_t *h)
-{
-	const listint_t *ptr = h;
-	unsigned int count = 0;
-
-	while (ptr)
-	{
-		count++;
-		ptr = ptr->next;
-	}
-	return (count);
-}
-/**
- * insert_nodeint_at_index - inserts a new node at a given position
- *
- * @head: ptr
- * @idx: index of node
- * @n: data member of node
- *
- * Return: the address of the new node, or NULL if it failed
+ * insert_nodeint_at_index - inserting a new node
+ * @head: double pointer
+ * @idx: index of the node
+ * @n: new node value
+ * Return: address of new node
  */
 listint_t *insert_nodeint_at_index(listint_t **head, unsigned int idx, int n)
 {
-	listint_t *ptr, *p;
-	unsigned int m, i = 0;
+	listint_t *new, *tmp;
+	unsigned int i;
 
-	if (!(head && *head))
+	/* check head */
+	if (head == NULL)
 		return (NULL);
-	p = *head;
-	ptr = malloc(sizeof(listint_t));
-	if (!ptr)
-		return (NULL);
-
-	m = listintlen(p);
-	m--;
-	if (!(idx <= m) && idx != m + 1)
+	/*serch for idx -1 */
+	if (idx > 0)
 	{
-		free(ptr);
-		return (NULL);
+		tmp = *head;
+		for (i = 0; i < idx - 1; i++)
+		{
+			tmp = tmp->next;
+			if (!tmp)
+				return (NULL);
+		}
 	}
 
-	if (!idx)
+	/* create the node */
+	new = malloc(sizeof(listint_t));
+	if (!new)
+		return (NULL);
+	new->n = n;
+
+	/* case idx 0 */
+	if (idx == 0)
 	{
-		ptr->n = n;
-		ptr->next = p;
-		*head = ptr;
-		return (ptr);
+		new->next = *head;
+		*head = new;
+		return (new);
 	}
-	while (i != idx - 1)
-	{
-		p = p->next;
-		i++;
-	}
-	ptr->n = n;
-	ptr->next = p->next;
-	p->next = ptr;
-	return (ptr);
+	new->next = tmp->next;
+	tmp->next = new;
+	return (new);
 }
