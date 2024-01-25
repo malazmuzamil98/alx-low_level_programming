@@ -15,7 +15,7 @@ size_t free_listint_safe(listint_t **h)
 	if (!h || !*h)
 		return (0);
 
-	corrent = h;
+	corrent = head;
 	while (corrent)
 	{
 		corrent = corrent->next;
