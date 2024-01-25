@@ -1,27 +1,39 @@
 #include "lists.h"
 
 /**
- * free_listint_safe- finds the loop in a linked list
- * @h: pointer to head
- * Return: the loop address
+ * free_listint_safe - frees a listint_t list.
+ *
+ * @h: ptr to ptr
+ *
+ * Return: the size of the list that was free’d
  */
-
 size_t free_listint_safe(listint_t **h)
 {
-	const listint_t *corrent = NULL;
-	size_t len = 0;
+	size_t count = 0;
+	int d;
+	listint_t *ptr;
 
-	/*check head */
 	if (!h || !*h)
 		return (0);
 
-	corrent = head;
-	while (corrent)
+	while (*h)
 	{
-		corrent = corrent->next;
-		free(*h);
-		*h = corrent;
-		len++;
+		d = *h - (*h)->next;
+		if (d > 0)
+		{
+			ptr = (*h)->next;
+			free(*h);
+			*h = ptr;
+			count++;
+		}
+		else
+		{
+			free(*h);
+			*h = NULL;
+			count++;
+			break;
+		}
 	}
-	return (len);
+		*h = NULL;
+		return (count);
 }
